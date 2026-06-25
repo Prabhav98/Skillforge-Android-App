@@ -14,7 +14,6 @@ import org.junit.Test
 
 class RepositoryTest {
 
-    // A fake API that returns hardcoded data — no internet needed
     private val fakeApi = object : ApiService {
         override suspend fun getData(): ApiResponse {
             return ApiResponse(
@@ -44,13 +43,10 @@ class RepositoryTest {
 
     @Test
     fun `repository returns correct data from api`() = runTest {
-        // Arrange — create the repo with our fake API
         val repository = Repository(fakeApi)
 
-        // Act — call the function
         val result = repository.fetchData()
 
-        // Assert — check the results
         assertTrue(result.isSuccess)
         val data = result.getOrNull()!!
         assertEquals(1, data.categories.size)
@@ -79,9 +75,9 @@ class RepositoryTest {
         val data = repository.fetchData().getOrNull()!!
         val lessons = data.categories[0].courses[0].lessons
 
-        assertTrue(lessons[0].isFree)        // "Welcome & Setup" is free
-        assertTrue(lessons[1].isFree)        // "Variables" is free
-        assertEquals(false, lessons[2].isFree) // "Functions" is locked
+        assertTrue(lessons[0].isFree)
+        assertTrue(lessons[1].isFree)
+        assertEquals(false, lessons[2].isFree)
     }
 
 }

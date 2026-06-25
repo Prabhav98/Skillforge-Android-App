@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit
 object RetrofitClient {
 
     private const val BASE_URL = "https://raw.githubusercontent.com/"
-
     private val loggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
 
     private val okHttpClient = OkHttpClient.Builder()

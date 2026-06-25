@@ -18,19 +18,15 @@ import com.app.skillforge.viewModel.UiState
 import com.bumptech.glide.Glide
 
 class LessonFragment : Fragment() {
-
     private var _binding: FragmentLessonBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
-
     private var categoryIndex = 0
     private var courseIndex = 0
     private var lessonIndex = 0
     private var adapter: LessonPlayerAdapter? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentLessonBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,19 +55,16 @@ class LessonFragment : Fragment() {
     private fun bindLesson(course: Course, currentLessonIndex: Int) {
         val lesson = course.lessons[currentLessonIndex]
 
-        // Player background
         Glide.with(requireContext())
             .load(course.thumbnailUrl)
             .centerCrop()
             .into(binding.ivPlayerBg)
 
-        // Time display
         val totalSecs = lesson.durationMinutes * 60
         binding.tvTotalTime.text = String.format(
             "%02d:%02d", totalSecs / 60, totalSecs % 60
         )
 
-        // Lesson info
         binding.tvLessonLabel.text = getString(
             R.string.lesson_label_format,
             currentLessonIndex + 1,
@@ -82,7 +75,6 @@ class LessonFragment : Fragment() {
             "Set up Android Studio and run your first Kotlin file."
         }
 
-        // Lessons recycler
         adapter = LessonPlayerAdapter(course.lessons, currentLessonIndex) { newIndex ->
             lessonIndex = newIndex
             adapter?.updateCurrentIndex(newIndex)

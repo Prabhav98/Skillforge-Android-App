@@ -19,17 +19,13 @@ import com.app.skillforge.viewModel.MainViewModel
 import com.app.skillforge.viewModel.UiState
 
 class CourseDetailFragment : Fragment() {
-
     private var _binding: FragmentCourseDetailBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
-
     private var categoryIndex = 0
     private var courseIndex = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentCourseDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -70,14 +66,11 @@ class CourseDetailFragment : Fragment() {
     private fun bindCourse(course: Course) {
         val ctx = requireContext()
 
-        // Tag
         val firstTag = course.tags.firstOrNull() ?: course.title.split(" ").first().lowercase()
         binding.tvTag.text = "// $firstTag"
 
-        // Hero title
         binding.tvHeroTitle.text = course.title
 
-        // Tags row
         binding.tagsContainer.removeAllViews()
         val tagsList = if (course.tags.isNotEmpty()) course.tags
         else course.title.split(" ").take(3)
@@ -98,7 +91,6 @@ class CourseDetailFragment : Fragment() {
             binding.tagsContainer.addView(tagView, params)
         }
 
-        // Course info
         binding.tvCourseTitle.text = course.title
         binding.tvSubtitle.text = "Everything you need to start writing ${
             course.title.split(" ").first()
@@ -116,20 +108,17 @@ class CourseDetailFragment : Fragment() {
         binding.tvInstructorName.text = course.instructor.name
         binding.tvInstructorTitle.text = course.instructor.title
 
-        // Description
         binding.tvDescription.text = course.description.ifEmpty {
             "Start from zero and learn ${course.title.split(" ").first()}'s syntax, null safety, " +
                     "collections, and functions. By the end you'll be comfortable reading and " +
                     "writing idiomatic ${course.title.split(" ").first()}."
         }
 
-        // Lessons summary
         val totalMin = course.lessons.sumOf { it.durationMinutes }
         binding.tvLessonsSummary.text = getString(
             R.string.lessons_count_format, course.lessons.size, totalMin
         )
 
-        // Lessons list
         binding.rvLessons.layoutManager = LinearLayoutManager(ctx)
         binding.rvLessons.adapter = LessonAdapter(course.lessons) { lessonIndex ->
             navigateToLesson(lessonIndex)

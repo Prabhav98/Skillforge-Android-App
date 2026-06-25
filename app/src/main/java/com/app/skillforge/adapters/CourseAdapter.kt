@@ -45,14 +45,12 @@ class CourseAdapter(
         b.tvRating.text = String.format("%.1f", course.rating)
         b.tvDuration.text = "${course.durationHours}h"
 
-        // Level color
         val levelColor = if (course.level.equals("Intermediate", true))
             ContextCompat.getColor(ctx, R.color.orange)
         else
             ContextCompat.getColor(ctx, R.color.teal)
         b.tvLevel.setTextColor(levelColor)
 
-        // Load thumbnail
         val cornerRadius = (12 * ctx.resources.displayMetrics.density).toInt()
         Glide.with(ctx)
             .load(course.thumbnailUrl)

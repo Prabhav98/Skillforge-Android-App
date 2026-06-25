@@ -21,7 +21,6 @@ import com.app.skillforge.viewModel.MainViewModel
 import com.app.skillforge.viewModel.UiState
 
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: MainViewModel by activityViewModels()
@@ -38,15 +37,12 @@ class HomeFragment : Fragment() {
 
         binding.btnRetry.setOnClickListener { viewModel.loadData() }
 
-        // See all click handlers
         binding.tvSeeAllCategories.setOnClickListener {
             Toast.makeText(requireContext(), "All Categories", Toast.LENGTH_SHORT).show()
-            // TODO: navigate to all categories screen
         }
 
         binding.tvSeeAllCourses.setOnClickListener {
             Toast.makeText(requireContext(), "All Courses", Toast.LENGTH_SHORT).show()
-            // TODO: navigate to all courses screen
         }
 
         viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -79,15 +75,12 @@ class HomeFragment : Fragment() {
         val categories = state.data.categories
         val allCourses = categories.flatMap { it.courses }
 
-        // Categories horizontal list
         binding.rvCategories.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvCategories.adapter = CategoryAdapter(categories)
 
-        // Attach scroll indicator
         setupScrollIndicator()
 
-        // Courses list
         binding.rvCourses.layoutManager = LinearLayoutManager(requireContext())
         binding.rvCourses.adapter = CourseAdapter(allCourses) { course ->
             navigateToCourseDetail(course)
@@ -101,7 +94,6 @@ class HomeFragment : Fragment() {
                 updateThumbPosition()
             }
         })
-        // Initial position after layout
         binding.rvCategories.post { updateThumbPosition() }
     }
 
@@ -111,8 +103,8 @@ class HomeFragment : Fragment() {
         val extent = rv.computeHorizontalScrollExtent()
         val offset = rv.computeHorizontalScrollOffset()
 
-        val trackWidth = 120 * resources.displayMetrics.density   // 120dp track
-        val thumbWidth = 50 * resources.displayMetrics.density    // 50dp thumb
+        val trackWidth = 120 * resources.displayMetrics.density
+        val thumbWidth = 50 * resources.displayMetrics.density
         val maxThumbTravel = trackWidth - thumbWidth
 
         val scrollable = (range - extent).toFloat()

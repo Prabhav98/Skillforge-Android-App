@@ -25,7 +25,6 @@ class LessonAdapter(
             binding.tvLessonDuration.text = "${lesson.durationMinutes} min"
 
             if (lesson.isFree) {
-                // Free lesson — clickable
                 binding.iconBg.setBackgroundResource(R.drawable.bg_teal_light_circle)
                 binding.ivIcon.setImageResource(R.drawable.ic_play_arrow)
                 binding.ivIcon.setColorFilter(ContextCompat.getColor(ctx, R.color.teal))
@@ -36,7 +35,6 @@ class LessonAdapter(
                 binding.root.alpha = 1f
                 binding.root.setOnClickListener { onLessonClick(position) }
             } else {
-                // Locked lesson — show toast on tap
                 binding.iconBg.setBackgroundResource(R.drawable.bg_gray_circle)
                 binding.ivIcon.setImageResource(R.drawable.ic_lock)
                 binding.ivIcon.setColorFilter(ContextCompat.getColor(ctx, R.color.text_secondary))

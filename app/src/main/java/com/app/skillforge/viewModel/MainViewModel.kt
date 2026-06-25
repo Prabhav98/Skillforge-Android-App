@@ -18,10 +18,7 @@ sealed class UiState {
     data class Error(val message: String) : UiState()
 }
 
-class MainViewModel(
-    private val repository: Repository = Repository(RetrofitClient.api)
-) : ViewModel() {
-
+class MainViewModel(private val repository: Repository = Repository(RetrofitClient.api)) : ViewModel() {
     private val _state = MutableLiveData<UiState>(UiState.Loading)
     val state: LiveData<UiState> = _state
 
@@ -46,17 +43,9 @@ class MainViewModel(
         return if (s is UiState.Success) s.data.categories else emptyList()
     }
 
-    fun getAllCourses(): List<Course> {
-        return getCategories().flatMap { it.courses }
-    }
-
     fun getCourse(categoryIndex: Int, courseIndex: Int): Course? {
         val categories = getCategories()
         return categories.getOrNull(categoryIndex)?.courses?.getOrNull(courseIndex)
-    }
-
-    fun getLesson(categoryIndex: Int, courseIndex: Int, lessonIndex: Int): Lesson? {
-        return getCourse(categoryIndex, courseIndex)?.lessons?.getOrNull(lessonIndex)
     }
 
     fun findCourseIndices(course: Course): Pair<Int, Int>? {

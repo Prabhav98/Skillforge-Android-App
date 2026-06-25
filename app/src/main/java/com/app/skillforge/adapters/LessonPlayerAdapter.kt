@@ -27,7 +27,6 @@ class LessonPlayerAdapter(
 
             when {
                 isPlaying -> {
-                    // Currently playing — highlighted, clickable
                     binding.lessonContainer.setBackgroundResource(R.drawable.bg_playing)
                     binding.iconBg.setBackgroundResource(R.drawable.bg_teal_circle)
                     binding.ivIcon.setImageResource(R.drawable.ic_pause)
@@ -43,7 +42,6 @@ class LessonPlayerAdapter(
                 }
 
                 lesson.isFree -> {
-                    // Free lesson — clickable, switches to it
                     binding.lessonContainer.setBackgroundResource(R.drawable.bg_card)
                     binding.iconBg.setBackgroundResource(R.drawable.bg_teal_light_circle)
                     binding.ivIcon.setImageResource(R.drawable.ic_play_arrow)
@@ -58,7 +56,6 @@ class LessonPlayerAdapter(
                 }
 
                 else -> {
-                    // Locked lesson — shows toast on tap
                     binding.lessonContainer.setBackgroundResource(R.drawable.bg_card)
                     binding.iconBg.setBackgroundResource(R.drawable.bg_gray_circle)
                     binding.ivIcon.setImageResource(R.drawable.ic_lock)
