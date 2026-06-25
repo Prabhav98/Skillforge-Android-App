@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="cream">#FAF7F2</color>
+    <color name="cream_card">#FFFDF8</color>
+    <color name="teal">#14B8A6</color>
+    <color name="teal_dark">#0F766E</color>
+    <color name="teal_light">#CCFBF1</color>
+    <color name="teal_bg">#E6FAF5</color>
+    <color name="text_primary">#0F172A</color>
+    <color name="text_secondary">#64748B</color>
+    <color name="amber">#F59E0B</color>
+    <color name="orange">#F97316</color>
+    <color name="soft_gray">#F1F5F9</color>
+    <color name="green_dot">#10B981</color>
+    <color name="green_bg">#D1FAE5</color>
+    <color name="yellow_bg">#FEF3C7</color>
+    <color name="hero_overlay">#AA000000</color>
+    <color name="semi_black">#CC0F172A</color>
+    <color name="player_track">#55FFFFFF</color>
+    <color name="playing_bg">#D5F5F0</color>
+    <color name="transparent">#00000000</color>
+</resources>

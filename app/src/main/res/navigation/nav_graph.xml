@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.app.skillforge.fragments.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_home_to_courseDetail"
+            app:destination="@id/courseDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/courseDetailFragment"
+        android:name="com.app.skillforge.fragments.CourseDetailFragment"
+        android:label="Course Detail"
+        tools:layout="@layout/fragment_course_detail">
+
+        <argument
+            android:name="categoryIndex"
+            app:argType="integer" />
+        <argument
+            android:name="courseIndex"
+            app:argType="integer" />
+
+        <action
+            android:id="@+id/action_courseDetail_to_lesson"
+            app:destination="@id/lessonFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/lessonFragment"
+        android:name="com.app.skillforge.fragments.LessonFragment"
+        android:label="Lesson"
+        tools:layout="@layout/fragment_lesson">
+
+        <argument
+            android:name="categoryIndex"
+            app:argType="integer" />
+        <argument
+            android:name="courseIndex"
+            app:argType="integer" />
+        <argument
+            android:name="lessonIndex"
+            app:argType="integer" />
+    </fragment>
+
+</navigation>
